@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Transition</title>
+    <meta char="utf-8">
+    <style>
+      #transition {
+          background-color: yellow;
+          transition-property: background-
+          transition: background-color 3s;
+      }
+      
+      #transition:hover {
+          background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="transition">
+      This is a sample transition.
+    </div>
+  </body>
+</html>
