@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>Transformation</title>
+    <meta char="utf-8">
+    <style>
+      #rotate{
+          width: 200px;
+          height: 100px;
+          background-color: yellow;
+      }
+      
+      #rotate:hover {
+          /* Rotate div */
+          -ms-transform: rotate(7deg); /* IE 9 */
+          -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
+          transform: rotate(7deg);
+      }
+      
+      #scale {
+          margin: 150px;
+          width: 200px;
+          height: 100px;
+          background-color: yellow;
+          border: 1px solid black;
+          border: 1px solid black;
+      }
+      
+      #scale:hover {
+          -ms-transform: scale(2,3); /* IE 9 */
+          -webkit-transform: scale(2,3); /* Safari */
+          transform: scale(2,3); /* Standard syntax */
+      }
+      
+      div#myDiv {
+          -ms-transform: skewX(20deg); /* IE 9 */
+          -webkit-transform: skewX(20deg); /* Safari */
+          transform: skewX(20deg); /* Standard syntax */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS Transforms, Transistions, Animations</h1>
+    <h3>Transforms</h3>
+    <p>
+      CSS3 transforms allow you to translate, rotate, scale, and skew elements.
+      A transformation is an effect that lets an element change shape, size and position.
+    </p>
+    <div id="rotate">Hello, this is an example of rotation</div>
+    <br>
+    <p>The scale() method increases or decreases the size of an element.</p>
+    <div id="scale">
+      This div element is two times of its original width, and three times of its original height.
+    </div>    
+    <div id="myDiv">
+      This div element is skewed 20 degrees along the X-axis.
+    </div>
+  </body>
+</html>
