@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>Experiments | CSS3 Transitions</title>
+    <meta char="utf-8">
+    <style>
+      #correct {
+        background: black;
+        color: white;
+        transition: background 5s linear 0s;
+      }
+      #correct:hover {
+        background: red;
+      }
+      #wrong {
+        background: black;
+        color: white;
+        transition: blackground 5 0;
+      }
+      #wrong:hover {
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="correct">
+      This is the correct way.
+    </div>
+    <div id="wrong">
+      This is the wrong way.
+    </div>
+  </body>
+</html>
