@@ -1,0 +1,135 @@
+<html>
+    <head>
+        <title>CS261 | Sandbox</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            div {
+                height: 100px;
+                width: 100px;
+                background: black;
+                color: white;
+                border: 3px solid red;
+            }
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                    width: 100px;
+                }
+                20% {
+                    height: 100px;
+                }
+                30% {
+                    width: 200px;
+                }
+                40% {
+                    transform: rotate(180deg);
+                    height: 200px;
+                }
+                60% {
+                    width: 100px;
+                }
+                80% {
+                    height: 100px;
+                }
+                100% {
+                    transform: rotate(0deg);
+                }
+            }
+            @keyframes spinReverse {
+                0% {
+                    transform: rotate(0deg);
+                    width: 100px;
+                }
+                20% {
+                    height: 100px;
+                }
+                30% {
+                    width: 200px;
+                }
+                40% {
+                    transform: rotate(-180deg);
+                    height: 200px;
+                }
+                60% {
+                    width: 100px;
+                }
+                80% {
+                    height: 100px;
+                }
+                100% {
+                    transform: rotate(0deg);
+                }
+            }
+            #animate_correct {
+                position: fixed;
+                left: 0px;
+                animation: spin 5s linear infinite;
+            }
+            #animate_correct p {
+                position: fixed;
+                animation: spinReverse 5s linear infinite;
+            }
+            #transform_correct {
+                position: fixed;
+                left: 250px;
+            }
+            #transform_correct:hover {
+                transform: rotate(45deg);
+            }
+            #transit_correct {
+                position: fixed;
+                left: 500px;
+                transition: all 5s ease-in-out 0s;
+            }
+            #transit_correct p {
+                transition: all 5s ease-in-out 0s;
+            }
+            #transit_correct:hover {
+                width: 200px;
+                height: 200px;
+                transform: rotate(180deg);
+            }
+            #transit_correct p:hover {
+                color: red;
+                transform: rotate(-180deg);
+            }
+            #animate_wrong {
+                position: fixed;
+                top: 500px;
+                left: 0px;
+                animation: spin 5 linear infinite;
+            }
+            #animate_wrong p {
+                animation: spinReverse 5 linear infinite;
+            }
+            #transform_wrong {
+                position: fixed;
+                top: 500px;
+                left: 250px;
+            }
+            #transform_wrong:hover {
+                transform: rotate(45);
+            }
+            #transit_wrong {
+                position: fixed;
+                top: 500px;
+                left: 500px;
+                transition: all 5 linear 0;
+            }
+            #transit_wrong:hover {
+                width: 200;
+                height: 200;
+                rotation: 180deg;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="transform_correct"><p>Transformation Correct</p></div>
+        <div id="transform_wrong"><p>Transformation Wrong</p></div>
+        <div id="transit_correct"><p>Transition Correct</p></div>
+        <div id="transit_wrong"><p>Transition Wrong</p></div>
+        <div id="animate_correct"><p>Animation Correct</p></div>
+        <div id="animate_wrong"><p>Animation Wrong</p></div>
+    </body>
+</html>
