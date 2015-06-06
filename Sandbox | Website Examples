@@ -36,6 +36,23 @@
                     transform: rotate(0deg);
                 }
             }
+            @keyframes spinFast {
+                0% {
+                    transform: rotate(0deg);
+                }
+                25% {
+                    transform: rotate(90deg);
+                }
+                50% {
+                    transform: rotate(180deg);
+                }
+                75% {
+                    transform: rotate(270deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
             @keyframes spinReverse {
                 0% {
                     transform: rotate(0deg);
@@ -63,7 +80,7 @@
             }
             #animate_correct {
                 position: fixed;
-                left: 0px;
+                left: 0%;
                 animation: spin 5s linear infinite;
             }
             #animate_correct p {
@@ -72,14 +89,14 @@
             }
             #transform_correct {
                 position: fixed;
-                left: 250px;
+                left: 20%;
             }
             #transform_correct:hover {
                 transform: rotate(45deg);
             }
             #transit_correct {
                 position: fixed;
-                left: 500px;
+                left: 40%;
                 transition: all 5s ease-in-out 0s;
             }
             #transit_correct p {
@@ -94,10 +111,16 @@
                 color: red;
                 transform: rotate(-180deg);
             }
+            #local_storage {
+                width: 400px;
+                height: 400px;
+                position: fixed;
+                left: 60%;
+            }
             #animate_wrong {
                 position: fixed;
-                top: 500px;
-                left: 0px;
+                top: 50%;
+                left: 0%;
                 animation: spin 5 linear infinite;
             }
             #animate_wrong p {
@@ -105,16 +128,16 @@
             }
             #transform_wrong {
                 position: fixed;
-                top: 500px;
-                left: 250px;
+                top: 50%;
+                left: 20%;
             }
             #transform_wrong:hover {
                 transform: rotate(45);
             }
             #transit_wrong {
                 position: fixed;
-                top: 500px;
-                left: 500px;
+                top: 50%;
+                left: 40%;
                 transition: all 5 linear 0;
             }
             #transit_wrong:hover {
@@ -123,11 +146,75 @@
                 rotation: 180deg;
             }
         </style>
+        <script>
+            function clickCounter() {
+                if(typeof(Storage) !== "undefined") {
+                    if (localStorage.clickcount) {
+                        localStorage.clickcount = Number(localStorage.clickcount)+1;
+                    } else {
+                        localStorage.clickcount = 1;
+                    }
+                    document.getElementById("result").innerHTML = localStorage.clickcount;
+                } else {
+                    document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+                }
+                if (localStorage.clickcount === 0) {
+                    document.getElementById("local_storage").style.background = "black";
+                    document.getElementById("local_storage").style.border = "3px solid red";
+                    document.getElementById("local_storage").style.color = "white";
+                } else if (localStorage.clickcount % 2 === 0) {
+                    document.title = "Multiple of 2";
+                    document.getElementById("local_storage").style.background = "red";
+                    document.getElementById("local_storage").style.border = "3px groove green";
+                    document.getElementById("local_storage").style.color = "green";
+                } else if (localStorage.clickcount % 3 === 0) {
+                    document.title = "Multiple of 3";
+                    document.getElementById("local_storage").style.background = "brown";
+                    document.getElementById("local_storage").style.border = "3px dashed yellow";
+                    document.getElementById("local_storage").style.color = "white";
+                } else if (localStorage.clickcount % 5 === 0) {
+                    document.title = "Multiple of 5";
+                    document.getElementById("local_storage").style.background = "white";
+                    document.getElementById("local_storage").style.border = "3px solid green";
+                    document.getElementById("local_storage").style.color = "black";
+                } else if (localStorage.clickcount % 7 === 0) {
+                    document.title = "Multiple of 7";
+                    document.getElementById("local_storage").style.background = "orange";
+                    document.getElementById("local_storage").style.border = "3px ridge blue";
+                    document.getElementById("local_storage").style.color = "blue";
+                } else if (localStorage.clickcount % 11 === 0) {
+                    document.title = "Multiple of 11";
+                    document.getElementById("local_storage").style.animation = "spinFast 5 linear infinite";
+                    document.getElementById("local_storage").style.background = "black";
+                    document.getElementById("local_storage").style.border = "3px solid red";
+                    document.getElementById("local_storage").style.color = "white";
+                } else {
+                    document.title = "CS261 | Sandbox";
+                    document.getElementById("local_storage").style.background = "black";
+                    document.getElementById("local_storage").style.border = "3px solid red";
+                    document.getElementById("local_storage").style.color = "white";
+                }
+            }
+            function reset() {
+                if(typeof(Storage) !== "undefined") {
+                    localStorage.clickcount = 0;
+                    document.getElementById("result").innerHTML = localStorage.clickcount;
+                } else {
+                    document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+                }
+                if (localStorage.clickcount === 0) {
+                    document.getElementById("local_storage").style.background = "black";
+                    document.getElementById("local_storage").style.border = "3px solid red";
+                    document.getElementById("local_storage").style.color = "white";
+                }
+            }
+        </script>
     </head>
     <body>
         <div id="transform_correct"><p>Transformation Correct</p></div>
         <div id="transform_wrong"><p>Transformation Wrong</p></div>
         <div id="transit_correct"><p>Transition Correct</p></div>
+        <div id="local_storage"><center><h1>How Many Times Can You Click Me Before You Hit Reset?</h1><p>You have clicked... <span id="result">0</span> time(s)!</p><br><button onclick="clickCounter()" type="button">Click Me!</button><br><br><button onclick="reset()" type="button">Reset</button></center></div>
         <div id="transit_wrong"><p>Transition Wrong</p></div>
         <div id="animate_correct"><p>Animation Correct</p></div>
         <div id="animate_wrong"><p>Animation Wrong</p></div>
