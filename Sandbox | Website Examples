@@ -113,9 +113,19 @@
             }
             #local_storage {
                 width: 400px;
-                height: 400px;
+                height: 300px;
                 position: fixed;
                 left: 60%;
+            }
+            #JSON {
+                width: 400px;
+                height: 200px;
+                position: fixed;
+                left: 60%;
+                top: 50%;
+            }
+            #JSON button {
+                margin-top: 25px;
             }
             #animate_wrong {
                 position: fixed;
@@ -215,6 +225,32 @@
         <div id="transform_wrong"><p>Transformation Wrong</p></div>
         <div id="transit_correct"><p>Transition Correct</p></div>
         <div id="local_storage"><center><h1>How Many Times Can You Click Me Before You Hit Reset?</h1><p>You have clicked... <span id="result">0</span> time(s)!</p><br><button onclick="clickCounter()" type="button">Click Me!</button><br><br><button onclick="reset()" type="button">Reset</button></center></div>
+        <div id="JSON"><center><button onclick="changeRecord()" type="button">Change Record</button><br><p id="JSON_demo">Records will appear here...</p></center></div>
+        <script>
+            var text = '{"people":[' +
+            '{"name":"Christian","email":"person@email.com","phone":"(xxx) xxx-xxxx","id":0 },' +
+            '{"name":"Alex","email":"person@email.com","phone":"(xxx) xxx-xxxx","id":1 },' +
+            '{"name":"Keith","email":"person@email.com","phone":"(xxx) xxx-xxxx","id":2 },' +
+            '{"name":"Daniel","email":"person@email.com","phone":"(xxx) xxx-xxxx","id":3 },' +
+            '{"name":"Dummy","email":"dummy@hotmail.com","phone":"(123) 456-7890","id":4}]}';
+
+            obj = JSON.parse(text);
+            function changeRecord() {
+                if(typeof(Storage) !== "undefined") {
+                    if (localStorage.record) {
+                        localStorage.record = Number(localStorage.record)+1;
+                    } else {
+                        localStorage.record = 0;
+                    }
+                } else {
+                    document.getElementById("JSON_demo").innerHTML = "Sorry, your browser does not support web storage...";
+                }
+                if (localStorage.record >= obj.people.length) {
+                    localStorage.record = 0;
+                }
+                document.getElementById("JSON_demo").innerHTML = "Name: " + obj.people[localStorage.record].name + "<br>ID: " + obj.people[localStorage.record].id + "<br>Email: " + obj.people[localStorage.record].email + "<br>Phone: " + obj.people[localStorage.record].phone;
+            }
+        </script>
         <div id="transit_wrong"><p>Transition Wrong</p></div>
         <div id="animate_correct"><p>Animation Correct</p></div>
         <div id="animate_wrong"><p>Animation Wrong</p></div>
